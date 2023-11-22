@@ -1,1 +1,64 @@
-dmFyIF92aWRlb19kb3dubG9hZCA9IChmdW5jdGlvbigpewoJbGV0IGRvd25sb2FkX21hbmFnZXIgPSB7CgkJZ2V0IHBsYXRmb3JtKCl7CgkJCWlmKHRoaXMuX3BsYXRmb3JtID09PSB1bmRlZmluZWQpIHsKCQkJCWlmKHdpbmRvdy5kb2N1bWVudC5kb21haW4uaW5kZXhPZigieW91dHViZS5jb20iKSA+PSAwKXsKCQkJCQl0aGlzLl9wbGF0Zm9ybSA9ICJ5b3V0dWJlIjsKCQkJCX0KCQkJCWVsc2V7CgkJCQkJdGhpcy5fcGxhdGZvcm0gPSBudWxsOwoJCQkJfQoJCQl9CgkJCXJldHVybiB0aGlzLl9wbGF0Zm9ybTsKCQl9LAoJCWdldCBmb3JtYXRzKCl7CgkJCWlmKHRoaXMuX2Zvcm1hdHMgPT0gbnVsbCkKCQkJewoJCQkJaWYodGhpcy5wbGF0Zm9ybSA9PSBudWxsKXsKCQkJCQlyZXR1cm4gbnVsbDsKCQkJCX0KCQkJCWxldCByZXN1bHRGbXRzID0gW107CgkJCQlpZih0aGlzLnBsYXRmb3JtID09ICJ5b3V0dWJlIikKCQkJCXsKCQkJCQlsZXQgZm10cyA9IHl0SW5pdGlhbFBsYXllclJlc3BvbnNlPy5zdHJlYW1pbmdEYXRhPy5hZGFwdGl2ZUZvcm1hdHM7CgkJCQkJaWYoZm10cyA9PT0gdW5kZWZpbmVkKQoJCQkJCXsKCQkJCQkJcmV0dXJuIHJlc3VsdEZtdHM7CgkJCQkJfQoJCQkJCWZvciAobGV0IGkgPSAwOyBpIDwgZm10cy5sZW5ndGg7IGkrKykgewoJCQkJCQlsZXQgZm10ID0gZm10c1tpXTsKCQkJCQkJaWYoZm10Lm1pbWVUeXBlLmluZGV4T2YoInZpZGVvL21wNCIpID09IDAgJiYgZm10LnVybCAhPSBudWxsKQoJCQkJCQl7CgkJCQkJCQlyZXN1bHRGbXRzLnB1c2goewoJCQkJCQkJCWZvcm1hdDoibXA0IiwKCQkJCQkJCQltaW1lX3R5cGU6InZpZGVvL21wNCIsCgkJCQkJCQkJcXVhbGl0eTpNYXRoLm1pbihmbXQud2lkdGgsZm10LmhlaWdodCkgKyAicCIsCgkJCQkJCQkJY29kZWM6bnVsbCwKCQkJCQkJCQl1cmw6IGZtdC51cmwKCQkJCQkJCX0pCgkJCQkJCX0KCQkJCQl9CgkJCQl9CgkJCQl0aGlzLl9mb3JtYXRzID0gcmVzdWx0Rm10czsKCQkJfQoJCQlyZXR1cm4gdGhpcy5fZm9ybWF0czsKCQl9Cgl9OwoJZG93bmxvYWRfbWFuYWdlci5kb3dubG9hZCA9IGZ1bmN0aW9uKGZtdCkgewoJCWxldCB1cmwgPSBmbXQudXJsOwoJCWxldCBtaW1lX3R5cGUgPSBmbXQubWltZV90eXBlOwoJCWxldCBkbF9lbG0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJhIik7CgkJZGxfZWxtLmhyZWYgPSB1cmw7CgkJZGxfZWxtLmRvd25sb2FkID0gdXJsLnN1YnN0cmluZyh1cmwubGFzdEluZGV4T2YoJy8nKSsxKS5yZXBsYWNlKC9cLlteLy5dKyQvLCAiLiIgKyBmbXQuZm9ybWF0KTsKCQlkbF9lbG0uY2xpY2soKTsKCX0KCXJldHVybiBkb3dubG9hZF9tYW5hZ2VyOwp9KSgpCgppZih0eXBlb2YgY29tcGxldGlvbiA9PT0gInVuZGVmaW5lZCIpCnsKCWNvbnNvbGUubG9nKEpTT04uc3RyaW5naWZ5KF92aWRlb19kb3dubG9hZC5mb3JtYXRzKSkKfWVsc2V7Cgljb21wbGV0aW9uKF92aWRlb19kb3dubG9hZC5mb3JtYXRzKTsKfQ==
+(function(){
+    let url = "https://www.youtube.com/watch?app=desktop&v=E7Q7kRGE0zc";
+    let func_end = function(){
+        if(typeof completion === "undefined")
+        {
+            console.log(...arguments)
+        }else{
+            completion(...arguments);
+        }
+    }
+    let ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function()
+    {
+        if(ajax.readyState == 4)
+        {
+            if(ajax.status == 200)
+            {
+                let rex = RegExp("ytInitialPlayerResponse\\s*=\\s*(\\{.+?\\})\\s*;");
+                let num = ajax.responseText.search(rex);
+                let video_info = ajax.responseText.substring(num);
+                let lIndex = video_info.indexOf("{");
+                let rIndex = video_info.indexOf("};");
+                video_info = video_info.substring(lIndex < 0 ? 0 : lIndex,rIndex < 0 ?  undefined : rIndex + 1)
+                let resultFmts = [];
+                try {
+                    let fmts = JSON.parse(video_info).streamingData.adaptiveFormats;
+                    for (let i = 0; i < fmts.length; i++) {
+						let fmt = fmts[i];
+						if(fmt.mimeType.indexOf("video/mp4") == 0 && fmt.url != null) {
+							resultFmts.push({
+								format:"mp4",
+								mime_type:"video/mp4",
+								quality:Math.min(fmt.width,fmt.height) + "p",
+								codec:null,
+								url: fmt.url
+							})
+						}
+					}
+                    
+                } catch (error) {
+                    console.log(video_info)
+                    resultFmts = undefined;
+                    debugger
+                }
+                func_end(resultFmts);
+            }
+            else{
+                console.error("request error!!");
+                func_end();
+            }
+        }
+    }
+    ajax.open("GET",url);
+    ajax.setRequestHeader("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
+    ajax.setRequestHeader("Accept-Language","zh-CN,zh;q=0.9");
+    try {
+        let userAgent = navigator.userAgent
+        console.log(userAgent);
+    } catch (error) {
+        ajax.setRequestHeader("Host",new URL(url).hostname);
+        ajax.setRequestHeader("User-Agent","Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1");
+    }
+    ajax.send()
+})();
