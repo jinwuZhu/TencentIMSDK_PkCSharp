@@ -53,5 +53,5 @@ namespace HelloWorldApplication
 }
 ```
 ## 安装
-1.从官网下载 IMSDK C接口版本。
-2.将Tencent.cs加入到你的项目 并且将IMSDK C接口版本的 DLL放到您的程序目录下即可完成安装。
+-- 从官网下载 IMSDK C接口版本。
+-- 将Tencent.cs加入到你的项目 并且将IMSDK C接口版本的 DLL放到您的程序目录下即可完成安装。
